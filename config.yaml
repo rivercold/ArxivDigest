@@ -1,9 +1,9 @@
 # For physics topics, use the specific subtopics, e.g. "Astrophysics"
-topic: "Computer Science"
+topic: "Astrophysics"
 # An empty list here will include all categories in a topic
 # Use the natural language names of the topics, found here: https://arxiv.org
 # Including more categories will result in more calls to the large language model
-categories: ["Artificial Intelligence", "Computation and Language"]
+categories: ["Solar and Stellar Astrophysics"]
 
 # The email address that the digest will be sent from. must be the address matching
 # your sendgrid api key.
@@ -31,8 +31,5 @@ threshold: 7
 #
 # This can be empty, which just return a full list of papers with no judgement or filtering,
 # in whatever order arXiv responds with.
-interest: |
-  1. Large language model pretraining and finetunings
-  2. Multimodal machine learning
-  3. Do not care about specific application, for example, information extraction, summarization, etc.
-  4. Not interested in paper focus on specific languages, e.g., Arabic, Chinese, etc.
+interest: 
+"Renewable energy from the sun."  
