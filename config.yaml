@@ -1,9 +1,9 @@
 # For physics topics, use the specific subtopics, e.g. "Astrophysics"
-topic: "Computational Geometry"
+topic: "Computer Science"
 # An empty list here will include all categories in a topic
 # Use the natural language names of the topics, found here: https://arxiv.org
 # Including more categories will result in more calls to the large language model
-categories: ""
+categories: ["Computational Geometry"]
 
 # The email address that the digest will be sent from. must be the address matching
 # your sendgrid api key.
@@ -31,4 +31,4 @@ threshold: 7
 #
 # This can be empty, which just return a full list of papers with no judgement or filtering,
 # in whatever order arXiv responds with.
-interest: "Renewable energy from the sun."  
+interest: "Interested in K-means and all kinds of unsupervised clustering methods."  
