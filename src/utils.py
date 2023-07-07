@@ -15,6 +15,7 @@ import copy
 
 StrOrOpenAIObject = Union[str, openai_object.OpenAIObject]
 
+
 openai_org = os.getenv("OPENAI_ORG")
 if openai_org is not None:
     openai.organization = openai_org
@@ -95,6 +96,8 @@ def openai_completion(
     ):
         batch_decoding_args = copy.deepcopy(decoding_args)  # cloning the decoding_args
 
+        backoff = 3
+
         while True:
             try:
                 shared_kwargs = dict(
@@ -114,7 +117,7 @@ def openai_completion(
                     completion_batch = openai.Completion.create(prompt=prompt_batch, **shared_kwargs)
 
                 choices = completion_batch.choices
-    
+
                 for choice in choices:
                     choice["total_tokens"] = completion_batch.usage.total_tokens
                 completions.extend(choices)
@@ -124,7 +127,11 @@ def openai_completion(
                 if "Please reduce your prompt" in str(e):
                     batch_decoding_args.max_tokens = int(batch_decoding_args.max_tokens * 0.8)
                     logging.warning(f"Reducing target length to {batch_decoding_args.max_tokens}, Retrying...")
+                elif not backoff:
+                    logging.error("Hit too many failures, exiting")
+                    raise e
                 else:
+                    backoff -= 1
                     logging.warning("Hit request rate limit; retrying...")
                     time.sleep(sleep_time)  # Annoying rate limit on requests.
 
